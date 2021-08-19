@@ -1,5 +1,6 @@
 ﻿public enum State {
     Normal,
     Dodging,
-    Idle
+    Idle,
+    Attacking
 }

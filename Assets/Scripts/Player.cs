@@ -12,6 +12,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     private State state;
 
     private float dodgeSpeed;
+    private float attackRange = 2f;
     
     private Camera _mainCamera;
 
@@ -73,7 +74,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void PlayerActionInput() {
         if (Input.GetMouseButtonDown(0)) {
-            // todo attack
+            PlayerAttack();
         }
 
         if (Input.GetMouseButtonDown(1)) {
@@ -87,6 +88,18 @@ public class Player : SingletonMonoBehaviour<Player> {
         if (Input.GetKey(KeyCode.Escape)) {
             // todo menu    
         }
+        
+        //DEBUG
+        if (Input.GetKeyDown(KeyCode.K)) {
+            Enemy.SpawnRandom(transform.position);
+        }
+    }
+
+    private void PlayerAttack() {
+        this.state = State.Attacking;
+        this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        this._mouseDirection = (_mousePosition - transform.position).normalized;
+        this._mouseDirection.z = 0f;
     }
     
     private void DodgeInput() {
@@ -148,10 +161,25 @@ public class Player : SingletonMonoBehaviour<Player> {
     
     private void PlayerActionHandler() {
         switch (state) {
+            
+            case State.Attacking:
+                AttackAction();
+                break;
+            
             case State.Dodging:
                 DodgeAction();
                 break;
         }
+    }
+
+    private void AttackAction() {
+        Vector3 attackPosition = transform.position + _mouseDirection * 2f;
+        Enemy targetEnemy = Enemy.GetClosestEnemy(attackPosition, attackRange);
+        if (targetEnemy != null) {
+            targetEnemy.TakeDamage(1);
+        }
+        //todo play attack animation
+        this.state = State.Normal;
     }
 
     private void DodgeAction() {

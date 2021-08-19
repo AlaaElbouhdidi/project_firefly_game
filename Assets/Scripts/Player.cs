@@ -19,6 +19,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     private Vector3 _mousePosition;
     private Vector3 _mouseDirection;
 
+    [SerializeField] private float blockSlowMultiplicator = 0.2f;
     [SerializeField] private float maxDodgeSpeed = 8f;
     [SerializeField] private float maxMovementSpeed = 8f;
     [SerializeField] private int life;
@@ -35,7 +36,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     // Update is called once per frame
     void Update () {
-        if (state == State.Normal || state == State.Idle) {
+        if (state == State.Normal || state == State.Idle || state == State.Blocking) {
             PlayerMovementInput();
             PlayerActionInput();
         }
@@ -75,14 +76,22 @@ public class Player : SingletonMonoBehaviour<Player> {
     private void PlayerActionInput() {
         if (Input.GetMouseButtonDown(0)) {
             PlayerAttack();
+            return;
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            // todo block
+            StartPlayerBlock();
+            return;
         }
-
+        
+        if (Input.GetMouseButtonUp(1)) {
+            EndPlayerBlock();
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space)) {
             DodgeInput();
+            return;
         }
         
         if (Input.GetKey(KeyCode.Escape)) {
@@ -101,7 +110,18 @@ public class Player : SingletonMonoBehaviour<Player> {
         this._mouseDirection = (_mousePosition - transform.position).normalized;
         this._mouseDirection.z = 0f;
     }
-    
+
+    private void StartPlayerBlock() {
+        if (state == State.Dodging) return;
+        this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
+        this.state = State.Blocking;
+    }
+
+    private void EndPlayerBlock() {
+        this._currentMovementSpeed = maxMovementSpeed;
+        this.state = State.Normal;
+    }
+
     private void DodgeInput() {
         this.state = State.Dodging;
         this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -166,6 +186,11 @@ public class Player : SingletonMonoBehaviour<Player> {
                 AttackAction();
                 break;
             
+            case State.Blocking:
+                MovePlayer();
+                BlockingAction();
+                break;
+            
             case State.Dodging:
                 DodgeAction();
                 break;
@@ -180,6 +205,11 @@ public class Player : SingletonMonoBehaviour<Player> {
         }
         //todo play attack animation
         this.state = State.Normal;
+    }
+
+    private void BlockingAction() {
+        //todo block animation
+        //Debug.Log("blocking");
     }
 
     private void DodgeAction() {

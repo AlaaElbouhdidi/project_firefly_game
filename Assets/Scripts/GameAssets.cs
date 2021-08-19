@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameAssets : SingletonMonoBehaviour<GameAssets>
 {
     [SerializeField] public GameObject pfEnemy;
-    private void Awake() {
+    private new void Awake() {
         base.Awake();
     }
 }

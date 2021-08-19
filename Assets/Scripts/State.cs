@@ -2,5 +2,6 @@
     Normal,
     Dodging,
     Idle,
-    Attacking
+    Attacking,
+    Blocking
 }

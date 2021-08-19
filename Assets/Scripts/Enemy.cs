@@ -26,7 +26,6 @@ public class Enemy : MonoBehaviour {
 
     public void TakeDamage(float damage) {
         this._currentHP -= damage;
-        Debug.Log(_currentHP);
         if (this._currentHP <= 0) {
             Destroy(gameObject);
             enemyList.Remove(this);
@@ -42,7 +41,6 @@ public class Enemy : MonoBehaviour {
     }
 
     public static Enemy GetClosestEnemy(Vector3 position, float range) {
-        Debug.Log(enemyList);
         if (enemyList == null) return null;
         Enemy closestEnemy = null;
 

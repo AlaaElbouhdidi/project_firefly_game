@@ -23,6 +23,17 @@ public class PlayerHealthSystem: SingletonMonoBehaviour<PlayerHealthSystem> {
         }
     }
 
+    public void HealDamage(float healAmount) {
+        _currentHp += healAmount;
+        if (_currentHp <= 2) {
+            heartFull1.fillAmount += 0.5f;
+        } else if (_currentHp <= 4) {
+            heartFull2.fillAmount += 0.5f;
+        } else if (_currentHp <= 6) {
+            heartFull3.fillAmount += 0.5f;
+        }
+    }
+
     private void PlayerDie() {
         Debug.Log("ded");
     }

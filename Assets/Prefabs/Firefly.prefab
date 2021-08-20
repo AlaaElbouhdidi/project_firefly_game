@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 709308865364848200}
   - component: {fileID: 709308865364848207}
   - component: {fileID: 709308865364848206}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 709308866571787059}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Firefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}

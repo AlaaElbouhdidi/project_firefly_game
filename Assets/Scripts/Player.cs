@@ -9,9 +9,9 @@ public class Player : SingletonMonoBehaviour<Player> {
     private Rigidbody2D _rigidbody2D;
     private float _xInput;
     private float _yInput;
-    private State state;
+    private State _state;
 
-    private float dodgeSpeed;
+    private float _dodgeSpeed;
     private float attackRange = 2f;
     
     private Camera _mainCamera;
@@ -25,18 +25,16 @@ public class Player : SingletonMonoBehaviour<Player> {
     [SerializeField] private int life;
     private float _currentMovementSpeed;
     
-    // Start is called before the first frame update
     protected override void Awake () {
         base.Awake();
-        state = State.Normal;
+        _state = State.Normal;
         _mainCamera = Camera.main;
         _currentMovementSpeed = maxMovementSpeed;
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update () {
-        if (state == State.Normal || state == State.Idle || state == State.Blocking) {
+        if (_state == State.Normal || _state == State.Idle || _state == State.Blocking) {
             PlayerMovementInput();
             PlayerActionInput();
         }
@@ -64,10 +62,10 @@ public class Player : SingletonMonoBehaviour<Player> {
         }
         
         if (_xInput == 0 && _yInput == 0) {
-            state = State.Idle;
+            _state = State.Idle;
         }
         else {
-            state = State.Normal;
+            _state = State.Normal;
         }
     }
     
@@ -93,7 +91,7 @@ public class Player : SingletonMonoBehaviour<Player> {
             DodgeInput();
             return;
         }
-        
+
         if (Input.GetKey(KeyCode.Escape)) {
             // todo menu    
         }
@@ -102,38 +100,42 @@ public class Player : SingletonMonoBehaviour<Player> {
         if (Input.GetKeyDown(KeyCode.K)) {
             Enemy.SpawnRandom(transform.position);
         }
+
+        if (Input.GetKeyDown(KeyCode.L)) {
+            PlayerHealthSystem.Instance.TakeDamage(1);
+        }
     }
 
     private void PlayerAttack() {
-        this.state = State.Attacking;
+        this._state = State.Attacking;
         this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         this._mouseDirection = (_mousePosition - transform.position).normalized;
         this._mouseDirection.z = 0f;
     }
 
     private void StartPlayerBlock() {
-        if (state == State.Dodging) return;
+        if (_state == State.Dodging) return;
         this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
-        this.state = State.Blocking;
+        this._state = State.Blocking;
     }
 
     private void EndPlayerBlock() {
         this._currentMovementSpeed = maxMovementSpeed;
-        this.state = State.Normal;
+        this._state = State.Normal;
     }
 
     private void DodgeInput() {
-        this.state = State.Dodging;
+        this._state = State.Dodging;
         this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         this._mouseDirection = _mousePosition - transform.position;
         this._mouseDirection.z = 0f;
-        this.dodgeSpeed = maxDodgeSpeed;
+        this._dodgeSpeed = maxDodgeSpeed;
     }
     
     ////////////////////////////// Movement Handling //////////////////////////////
     
     private void PlayerMovementHandler() {
-        switch (state) {
+        switch (_state) {
             case State.Idle:
                 // todo play idle animation
                 break;
@@ -180,7 +182,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     ////////////////////////////// Action Handling //////////////////////////////
     
     private void PlayerActionHandler() {
-        switch (state) {
+        switch (_state) {
             
             case State.Attacking:
                 AttackAction();
@@ -204,7 +206,7 @@ public class Player : SingletonMonoBehaviour<Player> {
             targetEnemy.TakeDamage(1);
         }
         //todo play attack animation
-        this.state = State.Normal;
+        this._state = State.Normal;
     }
 
     private void BlockingAction() {
@@ -213,10 +215,10 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     private void DodgeAction() {
-        TryMove(_mouseDirection, dodgeSpeed * Time.deltaTime);
-        dodgeSpeed -= dodgeSpeed * 10f * Time.deltaTime;
-        if (dodgeSpeed < 1f) {
-            this.state = State.Normal;
+        TryMove(_mouseDirection, _dodgeSpeed * Time.deltaTime);
+        _dodgeSpeed -= _dodgeSpeed * 10f * Time.deltaTime;
+        if (_dodgeSpeed < 1f) {
+            this._state = State.Normal;
         }
     }
 }

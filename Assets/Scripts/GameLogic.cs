@@ -5,5 +5,4 @@ using UnityEngine;
 public class GameLogic : SingletonMonoBehaviour<GameLogic> {
 
     [SerializeField] private GameObject player;
-    
 }

@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxStaminaRefreshRate: 10
-  staminaBar: {fileID: 1963615030}
+  staminaBar: {fileID: 1963615032}
 --- !u!1 &919375023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,9 +1571,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 501147152}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

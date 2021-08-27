@@ -8,6 +8,7 @@ using UnityEngine.TestTools;
 public class Player : SingletonMonoBehaviour<Player> {
 
     private Rigidbody2D _rigidbody2D;
+    private Animator animator;
     private float _xInput;
     private float _yInput;
     private State _state;
@@ -21,18 +22,22 @@ public class Player : SingletonMonoBehaviour<Player> {
     private Vector3 _mousePosition;
     private Vector3 _mouseDirection;
 
+    private Vector2 movement;
+
     [SerializeField] private float blockSlowMultiplicator = 0.2f;
     [SerializeField] private float maxDodgeSpeed = 8f;
     [SerializeField] private float maxMovementSpeed = 8f;
-    [SerializeField] private float dodgeStaminaCoast = 30f;
-    [SerializeField] private float blockStaminaCoast = 5f;
+    [SerializeField] private int life;
 
+    private float _currentMovementSpeed;
+    
     protected override void Awake () {
         base.Awake();
         _state = State.Normal;
         _mainCamera = Camera.main;
         _currentMovementSpeed = maxMovementSpeed;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update () {
@@ -42,12 +47,26 @@ public class Player : SingletonMonoBehaviour<Player> {
         }
 
         PlayerActionHandler();
-        PlayerMovementHandler();
+        //PlayerMovementHandler();
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
+    void FixedUpdate() {
+        _rigidbody2D.MovePosition(_rigidbody2D.position + movement * _currentMovementSpeed * Time.fixedDeltaTime);
     }
 
     ////////////////////////////// Movement Inputs //////////////////////////////
     
     private void PlayerMovementInput() {
+
+
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        /*
         _yInput = 0f;
         _xInput = 0f;
         if (Input.GetKey(KeyCode.W)) {
@@ -66,6 +85,10 @@ public class Player : SingletonMonoBehaviour<Player> {
         if (_xInput == 0 && _yInput == 0 && _state != State.Blocking) {
             _state = State.Idle;
         }
+        else {
+            _state = State.Normal;
+        }
+        */
     }
     
     ////////////////////////////// Action Inputs //////////////////////////////
@@ -146,6 +169,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     ////////////////////////////// Movement Handling //////////////////////////////
     
     private void PlayerMovementHandler() {
+
         switch (_state) {
             case State.Idle:
                 // todo play idle animation
@@ -158,12 +182,14 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     private void MovePlayer() {
+
         Vector3 moveDir = new Vector3(_xInput, _yInput).normalized;
         if (TryMove(moveDir, _currentMovementSpeed * Time.deltaTime)) {
             //todo play walking animation
         } else {
             //todo play idle animation
         }
+
     }
 
     private bool CanMove(Vector3 dir, float distance) {

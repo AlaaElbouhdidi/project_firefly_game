@@ -42,14 +42,5 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Instances
-    uniqueID: 2301053443
-    locked: 0
-  - name: Ground1
-    uniqueID: 1358276033
-    locked: 0
-  - name: Walls1
-    uniqueID: 1818928319
-    locked: 0
-  - name: Collisions
-    uniqueID: 3276379363
+    uniqueID: 1899347789
     locked: 0

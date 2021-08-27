@@ -260,11 +260,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -368,15 +368,15 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8771538166818859654}
   m_Lens:
-    FieldOfView: 60
-    OrthographicSize: 8.4375
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FieldOfView: 40
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1356878, y: 1}
+    m_SensorSize: {x: 2.1277778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -524,8 +524,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockSlowMultiplicator: 0.2
   maxDodgeSpeed: 20
-  maxMovementSpeed: 5
+  maxMovementSpeed: 4
   life: 0
+  dodgeStaminaCoast: 30
+  blockStaminaCoast: 5
 --- !u!212 &7689593358713551650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -565,7 +567,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1899347789
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d3e72149921a90f4795d4581e9eeed2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -752,7 +754,7 @@ SortingGroup:
   m_GameObject: {fileID: 8936560020530334346}
   m_Enabled: 1
   m_SortingLayerID: 1899347789
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!95 &8936560020530334348
 Animator:

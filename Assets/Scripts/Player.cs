@@ -29,8 +29,9 @@ public class Player : SingletonMonoBehaviour<Player> {
     [SerializeField] private float maxMovementSpeed = 8f;
     [SerializeField] private int life;
 
-    private float _currentMovementSpeed;
-    
+    [SerializeField] private float dodgeStaminaCoast = 30f;
+    [SerializeField] private float blockStaminaCoast = 5f;
+
     protected override void Awake () {
         base.Awake();
         _state = State.Normal;

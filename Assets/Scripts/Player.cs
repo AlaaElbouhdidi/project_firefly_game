@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -13,7 +14,8 @@ public class Player : SingletonMonoBehaviour<Player> {
     private State _state;
 
     private float _dodgeSpeed;
-    private float attackRange = 2f;
+    private float _attackRange = 2f;
+    private float _currentMovementSpeed;
     
     private Camera _mainCamera;
 
@@ -80,7 +82,7 @@ public class Player : SingletonMonoBehaviour<Player> {
             _xInput = +1f;
         }
         
-        if (_xInput == 0 && _yInput == 0) {
+        if (_xInput == 0 && _yInput == 0 && _state != State.Blocking) {
             _state = State.Idle;
         }
         else {
@@ -124,6 +126,10 @@ public class Player : SingletonMonoBehaviour<Player> {
         if (Input.GetKeyDown(KeyCode.L)) {
             PlayerHealthSystem.Instance.TakeDamage(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.O)) {
+            PlayerHealthSystem.Instance.HealDamage(1);
+        }
     }
 
     private void PlayerAttack() {
@@ -135,21 +141,29 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void StartPlayerBlock() {
         if (_state == State.Dodging) return;
-        this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
-        this._state = State.Blocking;
+        if (PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCoast)) {
+            PlayerStaminaSystem.Instance.ActivateShieldBlock(blockStaminaCoast);
+            this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
+            this._state = State.Blocking;
+        } else {
+            EndPlayerBlock();
+        }
     }
 
     private void EndPlayerBlock() {
         this._currentMovementSpeed = maxMovementSpeed;
         this._state = State.Normal;
+        PlayerStaminaSystem.Instance.DeactivateShieldBlock();
     }
 
     private void DodgeInput() {
-        this._state = State.Dodging;
-        this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        this._mouseDirection = _mousePosition - transform.position;
-        this._mouseDirection.z = 0f;
-        this._dodgeSpeed = maxDodgeSpeed;
+        if (PlayerStaminaSystem.Instance.ReduceStamina(dodgeStaminaCoast)) {
+            this._state = State.Dodging;
+            this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            this._mouseDirection = _mousePosition - transform.position;
+            this._mouseDirection.z = 0f;
+            this._dodgeSpeed = maxDodgeSpeed;
+        }
     }
     
     ////////////////////////////// Movement Handling //////////////////////////////
@@ -224,7 +238,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void AttackAction() {
         Vector3 attackPosition = transform.position + _mouseDirection * 2f;
-        Enemy targetEnemy = Enemy.GetClosestEnemy(attackPosition, attackRange);
+        Enemy targetEnemy = Enemy.GetClosestEnemy(attackPosition, _attackRange);
         if (targetEnemy != null) {
             targetEnemy.TakeDamage(1);
         }
@@ -234,7 +248,9 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void BlockingAction() {
         //todo block animation
-        //Debug.Log("blocking");
+        if (!PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCoast)) {
+            EndPlayerBlock();
+        }
     }
 
     private void DodgeAction() {

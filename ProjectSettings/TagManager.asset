@@ -44,11 +44,17 @@ TagManager:
   - name: Ground1
     uniqueID: 3271953493
     locked: 0
+  - name: Ground2
+    uniqueID: 2215175685
+    locked: 0
   - name: Walls1
-    uniqueID: 500004057
+    uniqueID: 1641212329
     locked: 0
   - name: Instances
     uniqueID: 1899347789
+    locked: 0
+  - name: Walls2
+    uniqueID: 500004057
     locked: 0
   - name: Collision
     uniqueID: 2359418913

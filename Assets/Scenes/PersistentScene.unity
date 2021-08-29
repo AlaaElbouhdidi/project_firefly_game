@@ -1659,7 +1659,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1899347789
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d3e72149921a90f4795d4581e9eeed2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1846,7 +1846,7 @@ SortingGroup:
   m_GameObject: {fileID: 8936560020530334346}
   m_Enabled: 1
   m_SortingLayerID: 1899347789
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
 --- !u!95 &8936560020530334348
 Animator:

@@ -285,9 +285,9 @@ public class Player : SingletonMonoBehaviour<Player> {
 
             foreach (RaycastHit2D rc in hits) {
 
-                if (rc.IsInteractable()) {
+                if (rc.transform.GetComponent<Interactable>()) {      // Extensions don't work right now, so there are the classic calls // if (rc.IsInteractable()) {
 
-                    rc.Interact();
+                    rc.transform.GetComponent<Interactable>().Interact();              // rc.Interact();
                     return;
                 }
             }

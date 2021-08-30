@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Door : Interactable {
 
-    private BoxCollider2D useRadius;
-
-    private GameObject interactIcon;
-    private GameObject opened;
-    private GameObject closed;
+    [SerializeField] private GameObject interactIcon;
+    [SerializeField] private GameObject opened;
+    [SerializeField] private GameObject closed;
 
 
     private void Awake() {
@@ -17,11 +15,6 @@ public class Door : Interactable {
 
     private void Start() {
 
-        useRadius = GetComponent<BoxCollider2D>();
-
-        interactIcon = transform.Find("UIOpen").GetComponent<GameObject>();
-        opened = transform.Find("opened").GetComponent<GameObject>();
-        closed = transform.Find("closed").GetComponent<GameObject>();
     }
 
     public override void Interact() {
@@ -30,12 +23,13 @@ public class Door : Interactable {
 
             closed.SetActive(false);
             opened.SetActive(true);
+            interactIcon.SetActive(false);
         }
     }
 
     public override void OpenInteractableIcon() {
 
-        if(opened.activeSelf) interactIcon.SetActive(false);    // The icon should only appear when the door is closed
+        if (closed.activeSelf) interactIcon.SetActive(true);    // The icon should only appear when the door is closed
     }
 
     public override void CloseInteractableIcon() {

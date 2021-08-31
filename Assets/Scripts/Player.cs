@@ -41,6 +41,11 @@ public class Player : SingletonMonoBehaviour<Player> {
         animator = GetComponent<Animator>();
     }
 
+    private void Start() {
+
+        InputKeyHandler.Instance.OnKeyE += Instance_OnKeyE;
+    }
+
     void Update () {
         if (_state == State.Normal || _state == State.Idle || _state == State.Blocking) {
             PlayerMovementInput();
@@ -131,6 +136,14 @@ public class Player : SingletonMonoBehaviour<Player> {
         if (Input.GetKeyDown(KeyCode.O)) {
             PlayerHealthSystem.Instance.HealDamage(1);
         }
+    }
+
+
+    ////////////////////////////// Interaction Inputs //////////////////////////////
+
+    private void Instance_OnKeyE(object sender, System.EventArgs e) {
+
+        CheckInteraction();
     }
 
     private void PlayerAttack() {
@@ -261,4 +274,24 @@ public class Player : SingletonMonoBehaviour<Player> {
             this._state = State.Normal;
         }
     }
+
+    ////////////////////////////// Interaction Handling //////////////////////////////
+
+    private void CheckInteraction() {
+
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.3f, Vector2.zero);
+
+        if (hits.Length > 0) {
+
+            foreach (RaycastHit2D rc in hits) {
+
+                if (rc.transform.GetComponent<Interactable>()) {      // Extensions don't work right now, so there are the classic calls // if (rc.IsInteractable()) {
+
+                    rc.transform.GetComponent<Interactable>().Interact();              // rc.Interact();
+                    return;
+                }
+            }
+        }
+    }
+
 }

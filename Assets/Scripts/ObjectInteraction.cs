@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : Interactable {
+public class ObjectInteraction : Interactable {
 
     [SerializeField] private GameObject interactIcon;
     [SerializeField] private GameObject opened;

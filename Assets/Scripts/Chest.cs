@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectInteraction : Interactable {
+public class Chest : Interactable {
+
+    [SerializeField] private Item itemLoot;
 
     [SerializeField] private GameObject interactIcon;
     [SerializeField] private GameObject opened;
@@ -23,6 +25,7 @@ public class ObjectInteraction : Interactable {
             closed.SetActive(false);
             opened.SetActive(true);
             interactIcon.SetActive(false);
+            AddToPlayersInventory();
         }
     }
 
@@ -34,5 +37,18 @@ public class ObjectInteraction : Interactable {
     public override void CloseInteractableIcon() {
 
         interactIcon.SetActive(false);
+    }
+
+    public void AddToPlayersInventory() {
+
+        switch (itemLoot) {
+
+            case (Item.Key):
+
+                Debug.Log("Ding!");
+                Inventory.Instance.IncreaseKeyAmount();
+                break;
+                
+        }
     }
 }

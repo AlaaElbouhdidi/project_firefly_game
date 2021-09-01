@@ -5,7 +5,11 @@ using UnityEngine;
 public class SoundManager : SingletonMonoBehaviour<SoundManager> {
 
     private static AudioClip unlock;
-    private static AudioClip lockedDoor;
+    private static AudioClip lockedDoor1;
+    private static AudioClip lockedDoor2;
+    private static AudioClip openChest;
+    private static AudioClip openDoor;
+
     private static AudioSource audioSource;
 
     private void Awake() {
@@ -13,7 +17,10 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
         base.Awake();
 
         unlock = Resources.Load<AudioClip>(Sound.Unlock.ToString());
-        lockedDoor = Resources.Load<AudioClip>(Sound.LockedDoor.ToString());
+        lockedDoor1 = Resources.Load<AudioClip>(Sound.LockedDoor1.ToString());
+        lockedDoor2= Resources.Load<AudioClip>(Sound.LockedDoor2.ToString());
+        openChest = Resources.Load<AudioClip>(Sound.OpenChest.ToString());
+        openDoor = Resources.Load<AudioClip>(Sound.OpenDoor.ToString());
 
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0.1f; // May be regulated by an options manu later
@@ -26,8 +33,17 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
             case (Sound.Unlock):
                 audioSource.PlayOneShot(unlock);
                 break;
-            case (Sound.LockedDoor):
-                audioSource.PlayOneShot(lockedDoor);
+            case (Sound.LockedDoor1):
+                audioSource.PlayOneShot(lockedDoor1);
+                break;
+            case (Sound.LockedDoor2):
+                audioSource.PlayOneShot(lockedDoor2);
+                break;
+            case (Sound.OpenChest):
+                audioSource.PlayOneShot(openChest);
+                break;
+            case (Sound.OpenDoor):
+                audioSource.PlayOneShot(openDoor);
                 break;
         }
     }

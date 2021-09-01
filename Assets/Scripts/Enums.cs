@@ -6,5 +6,8 @@ public enum Item {
 public enum Sound {
 
     Unlock,
-    LockedDoor
+    LockedDoor1,
+    LockedDoor2,
+    OpenChest,
+    OpenDoor
 }

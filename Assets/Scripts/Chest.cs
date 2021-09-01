@@ -22,6 +22,7 @@ public class Chest : Interactable {
 
         if (closed.activeSelf) {
 
+            SoundManager.PlaySound(Sound.OpenChest);
             closed.SetActive(false);
             opened.SetActive(true);
             interactIcon.SetActive(false);

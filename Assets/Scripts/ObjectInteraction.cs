@@ -20,11 +20,15 @@ public class ObjectInteraction : Interactable {
                 Inventory.Instance.DecreaseKeyAmount();
             }
 
-            else SoundManager.PlaySound(Sound.LockedDoor);
+            else SoundManager.PlaySound(Sound.LockedDoor2);
 
         }
 
-        else OpenObject();
+        else if (closed.activeSelf) {
+
+            OpenObject();
+            SoundManager.PlaySound(Sound.OpenDoor);
+        }
     }
 
     public void UnlockObject() {

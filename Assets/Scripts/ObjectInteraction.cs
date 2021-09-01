@@ -7,23 +7,30 @@ public class ObjectInteraction : Interactable {
     [SerializeField] private GameObject interactIcon;
     [SerializeField] private GameObject opened;
     [SerializeField] private GameObject closed;
-
-    private void Awake() {
-
-    }
-
-    private void Start() {
-
-    }
+    [SerializeField] private bool needsKey;
 
     public override void Interact() {
 
         if (closed.activeSelf) {
 
-            closed.SetActive(false);
-            opened.SetActive(true);
-            interactIcon.SetActive(false);
+            if (needsKey) {
+
+                if (Inventory.Instance.GetKeyAmount() > 0) {
+                    OpenObject();
+                    Inventory.Instance.DecreaseKeyAmount();
+                }
+                else Debug.Log("Need a key!");
+            }
+
+            else OpenObject();
         }
+    }
+
+    public void OpenObject() {
+
+        closed.SetActive(false);
+        opened.SetActive(true);
+        interactIcon.SetActive(false);
     }
 
     public override void OpenInteractableIcon() {

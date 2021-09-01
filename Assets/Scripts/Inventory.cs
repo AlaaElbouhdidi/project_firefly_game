@@ -20,4 +20,9 @@ public class Inventory : SingletonMonoBehaviour<Inventory> {
 
         keyAmount ++;
     }
+
+    public void DecreaseKeyAmount() {
+
+        keyAmount--;
+    }
 }

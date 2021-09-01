@@ -7,23 +7,30 @@ public class ObjectInteraction : Interactable {
     [SerializeField] private GameObject interactIcon;
     [SerializeField] private GameObject opened;
     [SerializeField] private GameObject closed;
+    [SerializeField] private GameObject locked;
     [SerializeField] private bool needsKey;
 
     public override void Interact() {
 
-        if (closed.activeSelf) {
+        if (locked.activeSelf) {
 
-            if (needsKey) {
+            if (Inventory.Instance.GetKeyAmount() > 0) {
 
-                if (Inventory.Instance.GetKeyAmount() > 0) {
-                    OpenObject();
-                    Inventory.Instance.DecreaseKeyAmount();
-                }
-
+                UnlockObject();
+                Inventory.Instance.DecreaseKeyAmount();
             }
 
-            else OpenObject();
+            else SoundManager.PlaySound(Sound.LockedDoor);
+
         }
+
+        else OpenObject();
+    }
+
+    public void UnlockObject() {
+        SoundManager.PlaySound(Sound.Unlock);
+        locked.SetActive(false);
+        closed.SetActive(true);
     }
 
     public void OpenObject() {
@@ -35,7 +42,7 @@ public class ObjectInteraction : Interactable {
 
     public override void OpenInteractableIcon() {
 
-        if (closed.activeSelf) interactIcon.SetActive(true);    // The icon should only appear when the door is closed
+        if (closed.activeSelf || locked.activeSelf) interactIcon.SetActive(true);    // The icon should only appear when the door is closed
     }
 
     public override void CloseInteractableIcon() {

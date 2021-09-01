@@ -45,7 +45,6 @@ public class Chest : Interactable {
 
             case (Item.Key):
 
-                Debug.Log("Ding!");
                 Inventory.Instance.IncreaseKeyAmount();
                 break;
                 

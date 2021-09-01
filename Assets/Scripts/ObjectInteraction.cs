@@ -19,7 +19,7 @@ public class ObjectInteraction : Interactable {
                     OpenObject();
                     Inventory.Instance.DecreaseKeyAmount();
                 }
-                else Debug.Log("Need a key!");
+
             }
 
             else OpenObject();

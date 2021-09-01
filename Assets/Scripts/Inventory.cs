@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Inventory : SingletonMonoBehaviour<Inventory> {
+
+    [SerializeField] private TextMeshProUGUI keyAmountUI;
 
     private int keyAmount = 0;
 
@@ -19,10 +22,16 @@ public class Inventory : SingletonMonoBehaviour<Inventory> {
     public void IncreaseKeyAmount() {
 
         keyAmount ++;
+        UpdateKeyAmount();
     }
 
     public void DecreaseKeyAmount() {
 
         keyAmount--;
+        UpdateKeyAmount();
+    }
+
+    public void UpdateKeyAmount() {
+        keyAmountUI.text = keyAmount.ToString();
     }
 }

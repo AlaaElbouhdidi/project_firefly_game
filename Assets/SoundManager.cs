@@ -9,6 +9,8 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
     private static AudioClip lockedDoor2;
     private static AudioClip openChest;
     private static AudioClip openDoor;
+    private static AudioClip step1;
+    private static AudioClip step2;
 
     private static AudioSource audioSource;
 
@@ -21,6 +23,8 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
         lockedDoor2= Resources.Load<AudioClip>(Sound.LockedDoor2.ToString());
         openChest = Resources.Load<AudioClip>(Sound.OpenChest.ToString());
         openDoor = Resources.Load<AudioClip>(Sound.OpenDoor.ToString());
+        step1 = Resources.Load<AudioClip>(Sound.Step1.ToString());
+        step2 = Resources.Load<AudioClip>(Sound.Step2.ToString());
 
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0.1f; // May be regulated by an options manu later
@@ -44,6 +48,12 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
                 break;
             case (Sound.OpenDoor):
                 audioSource.PlayOneShot(openDoor);
+                break;
+            case (Sound.Step1):
+                audioSource.PlayOneShot(step1);
+                break;
+            case (Sound.Step2):
+                audioSource.PlayOneShot(step2);
                 break;
         }
     }

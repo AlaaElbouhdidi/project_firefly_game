@@ -9,5 +9,7 @@ public enum Sound {
     LockedDoor1,
     LockedDoor2,
     OpenChest,
-    OpenDoor
+    OpenDoor,
+    Step1,
+    Step2
 }

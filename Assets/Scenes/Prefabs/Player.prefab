@@ -258,9 +258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b14754c670ae2419503b722b4f91ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDodgeSpeed: 20
-  maxMovementSpeed: 10
+  blockSlowMultiplicator: 0.2
+  maxDodgeSpeed: -1
+  maxMovementSpeed: 8
   life: 0
+  dodgeStaminaCoast: 30
+  blockStaminaCoast: 5
 --- !u!212 &2079095508225744657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -310,7 +313,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6067839836248296063

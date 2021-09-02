@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameAssets : SingletonMonoBehaviour<GameAssets>
 {
-    [SerializeField] public GameObject pfEnemy;
+    [SerializeField] public GameObject meeleEnemy;
+    [SerializeField] public GameObject rangedEnemy;
+    [SerializeField] public Transform pfProjectile;
     private new void Awake() {
         base.Awake();
     }

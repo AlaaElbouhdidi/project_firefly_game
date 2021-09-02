@@ -5,3 +5,16 @@
     Attacking,
     Blocking
 }
+
+public enum EnemyState {
+    Idle,
+    WalkingToSpawn,
+    Attacking,
+    Patrol
+}
+
+public enum EnemyType {
+    Meele,
+    Ranged,
+    Boss
+}

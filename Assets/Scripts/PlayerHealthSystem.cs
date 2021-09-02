@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealthSystem: SingletonMonoBehaviour<PlayerHealthSystem> {
-    private float maxHP = 6f;
     private float _currentHp = 6f;
 
     public Image heartFull1;

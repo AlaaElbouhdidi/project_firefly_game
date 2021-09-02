@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -61,7 +62,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     void FixedUpdate() {
-        _rigidbody2D.MovePosition(_rigidbody2D.position + movement * _currentMovementSpeed * Time.fixedDeltaTime);
+        _rigidbody2D.MovePosition(_rigidbody2D.position + movement * (_currentMovementSpeed * Time.fixedDeltaTime));
     }
 
     ////////////////////////////// Movement Inputs //////////////////////////////
@@ -292,6 +293,12 @@ public class Player : SingletonMonoBehaviour<Player> {
                 }
             }
         }
+    }
+    
+    ////////////////////////////// global Helper //////////////////////////////
+
+    public State GetPlayerState() {
+        return _state;
     }
 
 }

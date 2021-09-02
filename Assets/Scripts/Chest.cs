@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : Interactable {
+public class Chest : Interactable {
+
+    [SerializeField] private Item itemLoot;
 
     [SerializeField] private GameObject interactIcon;
     [SerializeField] private GameObject opened;
     [SerializeField] private GameObject closed;
-
 
     private void Awake() {
 
@@ -21,9 +22,11 @@ public class Door : Interactable {
 
         if (closed.activeSelf) {
 
+            SoundManager.PlaySound(Sound.OpenChest);
             closed.SetActive(false);
             opened.SetActive(true);
             interactIcon.SetActive(false);
+            AddToPlayersInventory();
         }
     }
 
@@ -35,5 +38,17 @@ public class Door : Interactable {
     public override void CloseInteractableIcon() {
 
         interactIcon.SetActive(false);
+    }
+
+    public void AddToPlayersInventory() {
+
+        switch (itemLoot) {
+
+            case (Item.Key):
+
+                Inventory.Instance.IncreaseKeyAmount();
+                break;
+                
+        }
     }
 }

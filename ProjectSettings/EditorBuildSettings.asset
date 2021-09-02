@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/ForestDungeon.unity
+    guid: b25a51c51a9158a45965b2871a629198
+  - enabled: 1
+    path: Assets/Scenes/PersistentScene.unity
+    guid: 4e3d726160e60754182acf7aaf86108b
   m_configObjects: {}

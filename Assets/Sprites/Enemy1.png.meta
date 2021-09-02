@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e9e0b87b9de804a458f606a98ce07371
+=======
+guid: c0bac86477d416047aec410313016c6d
+>>>>>>> StairsChestsAndKeys
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

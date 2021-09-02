@@ -5,12 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour {
 
-    private BoxCollider2D roomArea;
+    private Collider2D roomArea;
     [SerializeField] private GameObject roomCover;
 
     private void Start() {
 
-        roomArea = transform.GetComponent<BoxCollider2D>();
+        roomArea = transform.GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -22,6 +22,5 @@ public class Room : MonoBehaviour {
 
         if (!roomCover.activeSelf) roomCover.SetActive(true);
     }
-
 
 }

@@ -39171,11 +39171,9 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
-<<<<<<< HEAD
 --- !u!1001 &1001849576
 =======
 --- !u!1001 &1073982396
->>>>>>> StairsChestsAndKeys
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -39295,7 +39293,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6786023296945739188, guid: 9eb060e2d0eb1e04da3b9b499c133ce3, type: 3}
   m_PrefabInstance: {fileID: 1073982396}
   m_PrefabAsset: {fileID: 0}
->>>>>>> StairsChestsAndKeys
 --- !u!1 &1158809838
 GameObject:
   m_ObjectHideFlags: 0
@@ -61991,7 +61988,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< HEAD
 --- !u!1 &2093623240
 GameObject:
   m_ObjectHideFlags: 0
@@ -62120,12 +62116,10 @@ Transform:
   m_PrefabInstance: {fileID: 2109799786}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2143702212
->>>>>>> StairsChestsAndKeys
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-<<<<<<< HEAD
     m_TransformParent: {fileID: 2122721852}
     m_Modifications:
     - target: {fileID: 1264888264492153707, guid: 3e62639dc1b01974b8de8c883bc14082, type: 3}
@@ -62231,7 +62225,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb060e2d0eb1e04da3b9b499c133ce3, type: 3}
->>>>>>> StairsChestsAndKeys
 --- !u!1001 &6786023298105944177
 PrefabInstance:
   m_ObjectHideFlags: 0

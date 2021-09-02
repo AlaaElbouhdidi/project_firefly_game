@@ -56,6 +56,9 @@ TagManager:
   - name: Walls2
     uniqueID: 500004057
     locked: 0
+  - name: RoomCover
+    uniqueID: 3942718227
+    locked: 0
   - name: Collision
     uniqueID: 2359418913
     locked: 0

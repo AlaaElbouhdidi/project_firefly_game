@@ -19,6 +19,7 @@ public class Room : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
+
         if (!roomCover.activeSelf) roomCover.SetActive(true);
     }
 

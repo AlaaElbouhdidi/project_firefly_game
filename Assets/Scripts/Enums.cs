@@ -13,3 +13,10 @@ public enum Sound {
     Step1,
     Step2
 }
+
+public enum Music {
+
+    ForestDungeonTheme,
+    VillageTheme,
+    GrayVillageTheme
+}

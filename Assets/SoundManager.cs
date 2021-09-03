@@ -27,7 +27,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager> {
         step2 = Resources.Load<AudioClip>(Sound.Step2.ToString());
 
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 0.1f; // May be regulated by an options manu later
+        audioSource.volume = 0.02f; // May be regulated by an options manu later
     }
 
     public static void PlaySound(Sound sound) {

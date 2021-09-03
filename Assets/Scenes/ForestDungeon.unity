@@ -190,11 +190,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 788130975}
+    m_TransformParent: {fileID: 1158809839}
     m_Modifications:
+    - target: {fileID: 7353760365164363116, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_LocalPosition.z
@@ -239,6 +243,10 @@ PrefabInstance:
     - target: {fileID: 8337576549546654830, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_Name
       value: DoorV (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944816082003451494, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f10731c8e10708d428e7db119eb82748, type: 3}
@@ -31479,7 +31487,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2815660286160538039, guid: 2c2c8f9e947027a4fb39e4126f20a573, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6786023296668794784, guid: 2c2c8f9e947027a4fb39e4126f20a573, type: 3}
       propertyPath: m_Enabled
@@ -31535,7 +31543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786023296945739189, guid: 2c2c8f9e947027a4fb39e4126f20a573, type: 3}
       propertyPath: m_Name
-      value: DoorH (2)
+      value: DoorHLocked (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2c8f9e947027a4fb39e4126f20a573, type: 3}
@@ -39272,6 +39280,7 @@ Transform:
   - {fileID: 1752983532}
   - {fileID: 1073982397}
   - {fileID: 2109799787}
+  - {fileID: 2100382724}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39287,6 +39296,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158809839}
     m_Modifications:
+    - target: {fileID: 7353760365164363116, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -39334,6 +39347,14 @@ PrefabInstance:
     - target: {fileID: 8337576549546654830, guid: f10731c8e10708d428e7db119eb82748, type: 3}
       propertyPath: m_Name
       value: DoorV (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987323618397880584, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+      propertyPath: isLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987323618397880584, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+      propertyPath: needsKey
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f10731c8e10708d428e7db119eb82748, type: 3}
@@ -61861,6 +61882,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &2100382724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8337576549546654829, guid: f10731c8e10708d428e7db119eb82748, type: 3}
+  m_PrefabInstance: {fileID: 62048906}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2109799786
 PrefabInstance:
   m_ObjectHideFlags: 0

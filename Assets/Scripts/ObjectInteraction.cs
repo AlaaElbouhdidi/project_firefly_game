@@ -8,7 +8,6 @@ public class ObjectInteraction : Interactable {
     [SerializeField] private GameObject opened;
     [SerializeField] private GameObject closed;
     [SerializeField] private GameObject locked;
-    [SerializeField] private bool needsKey;
 
     public override void Interact() {
 
@@ -24,11 +23,10 @@ public class ObjectInteraction : Interactable {
 
         }
 
-        else if (closed.activeSelf) {
+        else if (closed.activeSelf) OpenObject();
+            
 
-            OpenObject();
-            SoundManager.PlaySound(Sound.OpenDoor);
-        }
+        else Debug.Log("Unexpected state of door!");
     }
 
     public void UnlockObject() {
@@ -39,6 +37,7 @@ public class ObjectInteraction : Interactable {
 
     public void OpenObject() {
 
+        SoundManager.PlaySound(Sound.OpenDoor);
         closed.SetActive(false);
         opened.SetActive(true);
         interactIcon.SetActive(false);

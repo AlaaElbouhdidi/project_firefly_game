@@ -26,7 +26,7 @@ public class MusicManager : SingletonMonoBehaviour<MusicManager> {
 
         // Only for testing purpose
 
-        PlayMusic(Music.ForestDungeonTheme);
+        //PlayMusic(Music.ForestDungeonTheme);
     }
 
     public static void PlayMusic(Music music) {

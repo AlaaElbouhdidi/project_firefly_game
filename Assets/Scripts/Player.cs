@@ -30,8 +30,9 @@ public class Player : SingletonMonoBehaviour<Player> {
     [SerializeField] private float maxMovementSpeed = 8f;
     [SerializeField] private int life;
 
-    [SerializeField] private float dodgeStaminaCoast = 30f;
-    [SerializeField] private float blockStaminaCoast = 5f;
+    [SerializeField] private float dodgeStaminaCost = 30f;
+    [SerializeField] private float blockStaminaCost = 5f;
+    [SerializeField] private float attackStaminaCost = 20f;
 
     protected override void Awake () {
         base.Awake();
@@ -148,16 +149,18 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     private void PlayerAttack() {
-        this._state = State.Attacking;
-        this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        this._mouseDirection = (_mousePosition - transform.position).normalized;
-        this._mouseDirection.z = 0f;
+        if (PlayerStaminaSystem.Instance.ReduceStamina(attackStaminaCost)) {
+            this._state = State.Attacking;
+            this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            this._mouseDirection = (_mousePosition - transform.position).normalized;
+            this._mouseDirection.z = 0f;
+        }
     }
 
     private void StartPlayerBlock() {
         if (_state == State.Dodging) return;
-        if (PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCoast)) {
-            PlayerStaminaSystem.Instance.ActivateShieldBlock(blockStaminaCoast);
+        if (PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCost)) {
+            PlayerStaminaSystem.Instance.ActivateShieldBlock(blockStaminaCost);
             this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
             this._state = State.Blocking;
         } else {
@@ -172,7 +175,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     private void DodgeInput() {
-        if (PlayerStaminaSystem.Instance.ReduceStamina(dodgeStaminaCoast)) {
+        if (PlayerStaminaSystem.Instance.ReduceStamina(dodgeStaminaCost)) {
             this._state = State.Dodging;
             this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             this._mouseDirection = _mousePosition - transform.position;
@@ -263,7 +266,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void BlockingAction() {
         //todo block animation
-        if (!PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCoast)) {
+        if (!PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCost)) {
             EndPlayerBlock();
         }
     }

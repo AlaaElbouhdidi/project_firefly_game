@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour {
     private bool inRange = false;
     private Transform player;
     private EnemyType type;
-    private float patroleTime = 2f;
-    private float currentPatroleTime = 0f;
     private Vector3 targetPatrolOffset;
     private bool direction = false;
 

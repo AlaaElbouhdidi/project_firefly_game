@@ -11,7 +11,14 @@ public enum Sound {
     OpenChest,
     OpenDoor,
     Step1,
-    Step2
+    Step2,
+    HeroAttack,
+    HeroBlock,
+    HeroDodge,
+    EnemyMeeleAttack,
+    EnemyRangedAttack,
+    RaiseShield,
+    LowerShield
 }
 
 public enum Music {

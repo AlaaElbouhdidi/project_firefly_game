@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour {
 
     private void RangedAttack() {
         if (currentAttackCooldown <= 0 && playerInRange) {
-            // todo attack animation and sound
+            SoundManager.PlaySound(Sound.EnemyRangedAttack);
             Vector3 playerPosition = Player.Instance.transform.position;
             Projectile.Create(transform.position, playerPosition);
             currentAttackCooldown = attackCooldown;
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour {
             Vector3 targetDir = (player.transform.position - transform.position).normalized;
             transform.position += Time.deltaTime * moveSpeed * targetDir;
         } else if (currentAttackCooldown <= 0) {
-            // todo attack animation
+            SoundManager.PlaySound(Sound.EnemyMeeleAttack);
             State playerState = Player.Instance.GetPlayerState();
             switch (playerState) {
                 case State.Blocking:

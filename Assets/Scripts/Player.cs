@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -150,6 +151,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 
     private void PlayerAttack() {
         if (PlayerStaminaSystem.Instance.ReduceStamina(attackStaminaCost)) {
+            SoundManager.PlaySound(Sound.HeroAttack);
             this._state = State.Attacking;
             this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             this._mouseDirection = (_mousePosition - transform.position).normalized;
@@ -160,6 +162,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     private void StartPlayerBlock() {
         if (_state == State.Dodging) return;
         if (PlayerStaminaSystem.Instance.CheckForStaminaCoast(blockStaminaCost)) {
+            SoundManager.PlaySound(Sound.RaiseShield);
             PlayerStaminaSystem.Instance.ActivateShieldBlock(blockStaminaCost);
             this._currentMovementSpeed = _currentMovementSpeed * blockSlowMultiplicator;
             this._state = State.Blocking;
@@ -169,6 +172,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     }
 
     private void EndPlayerBlock() {
+        SoundManager.PlaySound(Sound.LowerShield);
         this._currentMovementSpeed = maxMovementSpeed;
         this._state = State.Normal;
         PlayerStaminaSystem.Instance.DeactivateShieldBlock();
@@ -177,6 +181,7 @@ public class Player : SingletonMonoBehaviour<Player> {
     private void DodgeInput() {
         if (PlayerStaminaSystem.Instance.ReduceStamina(dodgeStaminaCost)) {
             this._state = State.Dodging;
+            SoundManager.PlaySound(Sound.HeroDodge);
             this._mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             this._mouseDirection = _mousePosition - transform.position;
             this._mouseDirection.z = 0f;

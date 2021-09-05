@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player") && Player.Instance.GetPlayerState() == State.Blocking) {
-            // todo destroy sound
+            SoundManager.PlaySound(Sound.HeroBlock);
             Destroy(gameObject);
         }
         if (collision.CompareTag("Player") 

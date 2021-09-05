@@ -13,7 +13,7 @@ public class PlayerStaminaSystem : SingletonMonoBehaviour<PlayerStaminaSystem> {
     private float tmpStaminaCoast;
     private bool _blocking = false;
     
-    [SerializeField] private float maxStaminaRefreshRate = 10f;
+    [SerializeField] private float maxStaminaRefreshRate = 20f;
     [SerializeField] private Slider staminaBar;
 
     new void Awake() {
